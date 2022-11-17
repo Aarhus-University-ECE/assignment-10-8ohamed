@@ -8,7 +8,7 @@
 struct tree_node *Insert(int x, struct tree_node *t) {
   // Insert item x into the tree t
   if (t==NULL){
-  struct tree_node *t = malloc(sizeof(tree_node));
+  struct tree_node *t = malloc(sizeof(t));
   t-> item = x;
   t-> right = NULL;
   t-> left = NULL;
