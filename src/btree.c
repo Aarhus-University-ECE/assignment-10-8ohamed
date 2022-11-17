@@ -9,9 +9,9 @@ struct tree_node *Insert(int x, struct tree_node *t) {
   // Insert item x into the tree t
 if (t==NULL){
 
-  struct tree_node *t = malloc(sizeof(struct tree_node));
+  t = malloc(sizeof(struct tree_node));
   t-> item = x;
- t->left = NULL;
+  t->left = NULL;
   t->right = NULL;
 
   return t;
@@ -33,24 +33,42 @@ t->right = Insert (x,t->right);
 
 struct tree_node *Remove(int x, struct tree_node *t) {
   // Remove one item from the tree t
+  // 1. if x is not in tree, then return NULL
+
   if (t==NULL){
-    return 0;
+    return NULL;
   }
+
+  // 2. if x is in tree and is a leaf node, then remove leaf node
+  // 3. if x is not a leaf node and has either a left or a right child
+  // 4. if x is not a leaf node and has both a leaf and a right child
  
   if (t->item > x)
   {
-    return remove (t->left);
+    t->left = remove (x,t->left);
   }
-  if (t->item > x)
+  else if (t->item < x)
   {
-    return remove (t->right);
+    t->right = remove (x,t->right);
   }
+  else 
+  {
+    if (t->left == NULL) {
+      return t->right;
+    }
+
+  else if (t->right == NULL)
+    {
+      return t->left;
+    }
+
   else if (t->item==x) 
   {
     t=NULL;
   }
   return NULL;
 }
+
 
 int Contains(int x, struct tree_node *t) {
   if (t==NULL){
