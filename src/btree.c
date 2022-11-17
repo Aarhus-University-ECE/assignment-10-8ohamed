@@ -31,43 +31,45 @@ t->right = Insert (x,t->right);
 }
 
 
- struct tree_node *Remove(int x, struct tree_node*t) {
-   // Remove one item from the tree t
+ struct tree_node *Remove(int x, struct tree_node *t) {
+  // Remove one item from the tree t
 
 // 1. if x is not in tree, then return NULL
-  if (Empty(t)==1) {
-    return t;
+
+  if (t==NULL){
+    return NULL;
   }
-   // 2. if x is in tree and is a leaf node, then remove leaf node
+
+  // 2. if x is in tree and is a leaf node, then remove leaf node
   // 3. if x is not a leaf node and has either a left or a right child
   // 4. if x is not a leaf node and has both a leaf and a right child
-  if (x < t->item) {
-  
+ 
+  if (t->item > x)
+  {
     t->left = Remove(x,t->left);
-
-  } 
-  
- else if (x > t->item) {
+  }
+  else if (t->item < x)
+  {
     t->right = Remove(x,t->right);
-  } 
- else {
+  }
+  else 
+  {
     if (t->left == NULL) {
       return t->right;
-    } 
- else if (t->right == NULL) {
+    }
+
+  else if (t->right == NULL)
+    {
       return t->left;
     }
 
-    int data = t->right->item;
-    struct tree_node *temp = t->right;
-    while (temp->left != NULL) {
-        data = temp->left->item;
-        temp = temp->left;
-    }    
-    t->right = Remove( data,t->right);
+  else if (t->item==x) 
+  {
+    t=NULL;
   }
-  return t;
+  return NULL;
 }
+
 
 
 int Contains(int x, struct tree_node *t) {
