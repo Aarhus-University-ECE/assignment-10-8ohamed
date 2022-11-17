@@ -65,11 +65,11 @@ int Contains(int x, struct tree_node *t) {
   
   // Return true if the tree t contains item x. Return false otherwise.
  
-  if (t->item > x)
+  if (x > t->item)
   {
     return Contains (x,t->right);
   }
-  if (t->item < x)
+  if (x < t->item)
   {
     return Contains (x,t->left);
   }
