@@ -7,11 +7,29 @@
 
 struct tree_node *Insert(int x, struct tree_node *t) {
   // Insert item x into the tree t
-  struct tree_node *t = malloc(sizeof(x));
-  t-> item = x;
+if (t==NULL){
 
-  return x;
+  struct tree_node *t = malloc(sizeof(struct tree_node));
+  t-> item = x;
+ t->left = NULL;
+  t->right = NULL;
+
+  return t;
 }
+
+if (x<=t->item){
+  t->left = Insert (x,t->left);
+  return t;
+
+}
+if (x>t->item){
+t->right = Insert (x,t->right);
+
+  return t;
+}
+
+}
+
 
 struct tree_node *Remove(int x, struct tree_node *t) {
   // Remove one item from the tree t
