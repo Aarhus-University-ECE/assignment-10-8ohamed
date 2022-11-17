@@ -45,11 +45,11 @@ struct tree_node *Remove(int x, struct tree_node *t) {
  
   if (t->item > x)
   {
-    t->left = remove (x,t->left);
+    t->left = remove (t->left);
   }
   else if (t->item < x)
   {
-    t->right = remove (x,t->right);
+    t->right = remove (t->right);
   }
   else 
   {
